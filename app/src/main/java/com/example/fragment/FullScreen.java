@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +35,18 @@ public class FullScreen extends AppCompatActivity {
         }
         //System.out.println("path la " +imageLink);
         images = ImageGallery.listOfImage(this);
-        imageV.setImageURI(Uri.parse(imageLink));
+        //imageV.setImageBitmap(BitmapFactory.decodeFile(imageLink));
+
+        //Glide.with(this).load(imageLink).into(imageV);
+        //imageV.setImageURI(Uri.parse(imageLink));
         //Toast.makeText(this, ""+ images.size(), Toast.LENGTH_SHORT).show();
 
         viewPager = findViewById(R.id.viewfull);
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,images);
         viewPager.setAdapter(swipeAdapter);
+        //viewPager.setOffscreenPageLimit(0);
+        viewPager.setCurrentItem(position);
 
     }
 }

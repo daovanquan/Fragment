@@ -14,6 +14,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        //System.out.println("Position" + position);
         switch (position)
         {
             case 0 :

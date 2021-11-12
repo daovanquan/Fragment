@@ -23,7 +23,7 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        //System.out.println("Duong dan la" + String.valueOf(images.get(position)));
+       // System.out.println("Duong dan la" + String.valueOf(images.get(position)));
 
         return new SwipeFrag(String.valueOf(images.get(position)));
     }
