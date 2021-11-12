@@ -46,7 +46,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
             @Override
             public void onClick(View v) {
 
-                photoListener.onPhotoClick(image);
+                photoListener.onPhotoClick(position);
 
             }
         });
@@ -70,7 +70,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     //interface
     public interface PhotoListener{
-        void onPhotoClick(String path);
+        void onPhotoClick(int position);
 
     }
 }

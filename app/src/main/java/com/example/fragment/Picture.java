@@ -24,7 +24,7 @@ public class Picture extends Fragment {
 
     RecyclerView recyclerView;
     GalleryAdapter galleryAdapter;
-    List<String> images;
+    private List<String> images;
     TextView gallery_number;
 
     private View mview;
@@ -43,6 +43,7 @@ public class Picture extends Fragment {
 
         gallery_number = mview.findViewById(R.id.gallery_number);
         recyclerView = mview.findViewById(R.id.recycleview_gallery_images);
+
         if(ContextCompat.checkSelfPermission(mMainActivity,
                 Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
         {
@@ -62,10 +63,12 @@ public class Picture extends Fragment {
         images = ImageGallery.listOfImage(mMainActivity);
         galleryAdapter = new GalleryAdapter(mMainActivity, images, new GalleryAdapter.PhotoListener() {
             @Override
-            public void onPhotoClick(String path) {
-                Toast.makeText(mMainActivity, "" + path, Toast.LENGTH_SHORT).show();
+            public void onPhotoClick(int position) {
+                //Toast.makeText(mMainActivity, ""+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mMainActivity, "" + String.valueOf(images.get(position)), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mMainActivity,FullScreen.class);
-                intent.putExtra("image",path);
+                intent.putExtra("pos",position);
+                intent.putExtra("image",String.valueOf(images.get(position)));
                 startActivity(intent);
             }
         });
