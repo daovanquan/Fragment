@@ -3,10 +3,10 @@
 
     <item
         android:id="@+id/menu_picture"
-        android:title="Picture" />
+        android:title="Pictures" />
     <item
         android:id="@+id/menu_album"
-        android:title="Album" />
+        android:title="Albums" />
     <item
         android:id="@+id/menu_story"
         android:title="Story" />

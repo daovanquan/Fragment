@@ -1,14 +1,12 @@
 package com.example.fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.bumptech.glide.Glide;
 
@@ -18,7 +16,6 @@ import java.util.List;
 public class FullScreen extends AppCompatActivity {
 
     int position;
-    ViewPager viewPager;
     ImageView imageV;
     String imageLink;
     private List<String> images;
@@ -38,15 +35,27 @@ public class FullScreen extends AppCompatActivity {
         //imageV.setImageBitmap(BitmapFactory.decodeFile(imageLink));
 
         //Glide.with(this).load(imageLink).into(imageV);
-        //imageV.setImageURI(Uri.parse(imageLink));
-        //Toast.makeText(this, ""+ images.size(), Toast.LENGTH_SHORT).show();
+        imageV.setImageURI(Uri.parse(imageLink));
 
-        viewPager = findViewById(R.id.viewfull);
-        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager(),
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,images);
-        viewPager.setAdapter(swipeAdapter);
-        //viewPager.setOffscreenPageLimit(0);
-        viewPager.setCurrentItem(position);
+            imageV.setOnTouchListener(new OnSwipeTouchListener(FullScreen.this) {
+
+                public void onSwipeRight() {
+                    if(position>=0) {
+                        position = position - 1;
+                    }
+                    imageV.setImageURI(Uri.parse(images.get(position)));
+                    Toast.makeText(FullScreen.this, images.get(position), Toast.LENGTH_SHORT).show();
+                }
+
+                public void onSwipeLeft() {
+                    if(position <= images.size()) {
+                        position = position + 1;
+                    }
+                    imageV.setImageURI(Uri.parse(images.get(position)));
+                    Toast.makeText(FullScreen.this, images.get(position), Toast.LENGTH_SHORT).show();
+                }
+
+            });
 
     }
 }

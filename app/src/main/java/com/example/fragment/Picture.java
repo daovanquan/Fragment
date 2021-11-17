@@ -25,7 +25,6 @@ public class Picture extends Fragment {
     RecyclerView recyclerView;
     GalleryAdapter galleryAdapter;
     private List<String> images;
-    TextView gallery_number;
 
     private View mview;
     private MainActivity mMainActivity;
@@ -41,7 +40,7 @@ public class Picture extends Fragment {
 
         mMainActivity = (MainActivity) getActivity();
 
-        gallery_number = mview.findViewById(R.id.gallery_number);
+        //gallery_number = mview.findViewById(R.id.gallery_number);
         recyclerView = mview.findViewById(R.id.recycleview_gallery_images);
 
         if(ContextCompat.checkSelfPermission(mMainActivity,
@@ -66,6 +65,7 @@ public class Picture extends Fragment {
             public void onPhotoClick(int position) {
                 //Toast.makeText(mMainActivity, ""+position, Toast.LENGTH_SHORT).show();
                 Toast.makeText(mMainActivity, "" + String.valueOf(images.get(position)), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(mMainActivity,FullScreen.class);
                 intent.putExtra("pos",position);
                 intent.putExtra("image",String.valueOf(images.get(position)));
@@ -75,6 +75,6 @@ public class Picture extends Fragment {
 
         recyclerView.setAdapter(galleryAdapter);
 
-        gallery_number.setText("Photos (" + images.size() +")");
+       // gallery_number.setText("Photos (" + images.size() +")");
     }
 }

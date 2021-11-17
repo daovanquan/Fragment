@@ -10,9 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:contentDescription="Gallery_image"
         app:layout_constraintDimensionRatio="1"
-        android:id="@+id/image"
+        android:id="@+id/imagegallery"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
